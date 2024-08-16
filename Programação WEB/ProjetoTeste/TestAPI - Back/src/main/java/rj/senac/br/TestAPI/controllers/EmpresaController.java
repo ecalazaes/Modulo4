@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(value = "/empresas")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir CORS para essa origem
 public class EmpresaController {
 
     private EmpresaService empresaService;
@@ -51,5 +52,9 @@ public class EmpresaController {
             return ResponseEntity.notFound().build();
         }
     }
-//    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Empresa> updateEmpresa(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
+        empresa = empresaService.updateEmpresa(id, empresa);
+        return ResponseEntity.ok(empresa);
+    }
 }
