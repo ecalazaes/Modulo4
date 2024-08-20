@@ -11,7 +11,7 @@ export class EmpresaService {
 
   getAllEmpresas(): Observable<any>{
     return this.http.get(
-      `http://localhost:8080/empresas`, {}
+      `http://10.136.65.20:8080/empresas`, {}
     );
   }
 }
