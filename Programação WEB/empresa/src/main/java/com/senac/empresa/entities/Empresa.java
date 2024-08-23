@@ -1,12 +1,20 @@
 package com.senac.empresa.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "empresa")
-public class Empresa {
+@Table(name = "Empresa")
+public class Empresa implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +23,10 @@ public class Empresa {
 
     @Column(columnDefinition = "VARCHAR", name = "empresa_nome", nullable = false)
     private String nome;
+
+
+    @OneToMany(mappedBy = "empresa")
+    private Set<Projeto> projetos;
 
     public Empresa() {
     }
@@ -39,6 +51,11 @@ public class Empresa {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public Set<Projeto> getProjetos() {
+        return projetos;
+    }
+
 
     @Override
     public boolean equals(Object o) {
