@@ -29,5 +29,26 @@ public class GerenciadoraClientesTest1 {
         Cliente cliente =  gerClientes.pesquisaCliente(1);
         assertThat(cliente.getId(), CoreMatchers.is(1));
         assertThat(cliente.getEmail(), CoreMatchers.is("ecalazaes@gmail.com"));
+
+
+    }
+
+    @Test
+    public void testeRemoveCliente() {
+
+        //Instanciando 02 clientes
+        Cliente cliente01 = new Cliente(1, "Erick", 33, "ecalazaes@gmail.com", 1, true);
+        Cliente cliente02 = new Cliente(2, "Maria", 25, "maria@gmail.com", 2, true);
+
+        // Adicionando clientes na lista de clientes do banco
+        List<Cliente> clientesDoBanco = new ArrayList<>();
+        clientesDoBanco.addAll(Arrays.asList(cliente01, cliente02));
+
+        // Instancia da classe para o teste
+        GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientesDoBanco);
+
+        // Execução do teste
+        Boolean cliente = gerClientes.removeCliente(1);
+        assertThat(cliente.booleanValue(), CoreMatchers.is(true));
     }
 }
