@@ -47,6 +47,9 @@ public class Usuario implements Serializable {
     @JsonIgnore
     private Set<Usuario> usuarios;
 
+    @OneToOne(mappedBy = "usuario")
+    private ReservaAlocacao reservaAlocacao;
+
     public Usuario() {
     }
 

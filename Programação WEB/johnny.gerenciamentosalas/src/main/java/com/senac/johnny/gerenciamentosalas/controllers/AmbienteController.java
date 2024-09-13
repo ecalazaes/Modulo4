@@ -1,7 +1,6 @@
 package com.senac.johnny.gerenciamentosalas.controllers;
 
 import com.senac.johnny.gerenciamentosalas.entities.Ambiente;
-import com.senac.johnny.gerenciamentosalas.entities.Usuario;
 import com.senac.johnny.gerenciamentosalas.services.AmbienteService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
