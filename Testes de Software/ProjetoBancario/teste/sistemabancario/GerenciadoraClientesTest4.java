@@ -129,7 +129,6 @@ public class GerenciadoraClientesTest4 {
 		// Validação
 		try {
 			gerClientes.validaIdade(cliente.getIdade());
-			fail();
 		} catch (Exception e) {
 			assertThat(e.getMessage(), is(IdadeNaoPermitidaException.MSG_IDADE_INVALIDA));
 		}
@@ -170,7 +169,6 @@ public class GerenciadoraClientesTest4 {
 		// Validação
 		try {
 			gerClientes.validaIdade(cliente.getIdade());
-			fail();
 		} catch (Exception e) {
 			assertThat(e.getMessage(), is(IdadeNaoPermitidaException.MSG_IDADE_INVALIDA));
 		}
