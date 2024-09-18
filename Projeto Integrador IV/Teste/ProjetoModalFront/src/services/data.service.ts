@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'https://api.example.com/buscar'; // Substituir pela url do Endpoint
+  private apiUrl = 'http://localhost:8080/usuarios'; // Substituir pela url do Endpoint
 
   constructor(private http: HttpClient) {}
 
