@@ -18,4 +18,12 @@ public class UserService {
     public List<User> getUsers() {
        return userRepository.findAll();
     }
+
+    public List<User> getUserByName(String nome) {
+      return userRepository.findByNomeContaining(nome);
+    }
+
+    public List<User> getUserByIdade(int idade) {
+        return userRepository.findByIdade(idade);
+    }
 }
