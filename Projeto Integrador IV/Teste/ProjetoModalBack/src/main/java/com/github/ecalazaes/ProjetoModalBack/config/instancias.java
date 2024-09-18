@@ -21,10 +21,11 @@ public class instancias implements CommandLineRunner {
 
         User user1 = new User(null, "Erick Calazães", 33);
         User user2 = new User(null, "Erick da Silva", 50);
-        User user3 = new User(null, "Daniele", 20);
-        User user4 = new User(null, "Ronaldo", 35);
-        User user5 = new User(null, "Ronaldo", 35);
+        User user3 = new User(null, "Daniele", 35);
+        User user4 = new User(null, "Daniele Pinheiro", 38);
+        User user5 = new User(null, "Ronaldo Gomes", 35);
+        User user6 = new User(null, "Ronaldo Da Silva", 38);
 
-        userRepository.saveAll(Arrays.asList(user1, user2, user3, user4, user5));
+        userRepository.saveAll(Arrays.asList(user1, user2, user3, user4, user5, user6));
     }
 }

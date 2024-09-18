@@ -3,23 +3,26 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-  private apiUrlNome = 'http://localhost:8080/usuarios/nome'; // Substituir pela url do Endpoint
-  private apiUrlIdade = 'http://localhost:8080/usuarios/idade'; // Substituir pela url do Endpoint
+  private baseUrl = 'http://localhost:8080/usuarios'; // Substituir pela url do Endpoint
 
   constructor(private http: HttpClient) {}
 
+  // Método genérico para fazer buscas
+  private buscarPorFiltro(endpoint: string, paramsObj: { [key: string]: string }): Observable<any> {
+  let params = new HttpParams({ fromObject: paramsObj }); // Constrói os parâmetros dinamicamente
+  return this.http.get(`${this.baseUrl}/${endpoint}`, { params });
+}
+
   // Método para buscar por nome
-  buscarPorNome(filtroNome: string): Observable<any>{
-    let params = new HttpParams().set('nome', filtroNome);
-    return this.http.get(this.apiUrlNome, { params });
+  buscarPorNome(filtroNome: string): Observable<any> {
+    return this.buscarPorFiltro('nome', { nome: filtroNome });
   }
 
   // Método para buscar por idade
-  buscarPorIdade(filtroIdade: number): Observable<any>{
-    let params = new HttpParams().set('idade', filtroIdade.toString());
-    return this.http.get(this.apiUrlIdade, { params })
+  buscarPorIdade(filtroIdade: number): Observable<any> {
+    return this.buscarPorFiltro('idade', { idade: filtroIdade.toString() });
   }
 }

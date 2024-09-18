@@ -24,7 +24,6 @@ public class UserControllers {
         return ResponseEntity.ok(users);
     }
 
-
     @GetMapping("nome")
     public ResponseEntity<List<User>> getUserByNome(@RequestParam String nome) {
         List<User> users = userService.getUserByName(nome);
@@ -36,6 +35,4 @@ public class UserControllers {
         List<User> users = userService.getUserByIdade(idade);
         return ResponseEntity.ok(users);
     }
-
-
 }
