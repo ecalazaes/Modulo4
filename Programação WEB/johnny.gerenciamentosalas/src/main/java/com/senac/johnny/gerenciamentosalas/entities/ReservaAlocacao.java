@@ -17,10 +17,10 @@ public class ReservaAlocacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reserva_alocacao_id", length = 11, nullable = false)
+    @Column(name = "reserva_alocacao_id", nullable = false)
     private int id;
 
-    @Column(name = "reserva_alocacao_justificativa", length = 300)
+    @Column(name = "reserva_alocacao_justificativa")
     private String justificativa;
 
     @Column(name = "reserva_alocacao_data")
@@ -32,11 +32,11 @@ public class ReservaAlocacao implements Serializable {
     @Column(name = "reserva_alocacao_hora_fim")
     private LocalTime horaFim;
 
-    @Column(name = "reserva_alocacao_status", length = 11)
+    @Column(name = "reserva_alocacao_status")
     private int status;
 
     @OneToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
     public ReservaAlocacao() {

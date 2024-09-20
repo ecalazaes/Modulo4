@@ -15,25 +15,25 @@ public class Ambiente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ambiente_id", nullable = false, length = 11)
+    @Column(name = "ambiente_id", nullable = false)
     private int id;
 
-    @Column(name = "ambiente_descricao", length = 45)
+    @Column(name = "ambiente_descricao")
     private String descricao;
 
-    @Column(name = "ambiente_andar", length = 11)
+    @Column(name = "ambiente_andar", nullable = false)
     private int andar;
 
-    @Column(name = "ambiente_tipo", length = 45)
+    @Column(name = "ambiente_tipo")
     private String tipo;
 
-    @Column(name = "ambiente_numero_pcs", length = 11)
+    @Column(name = "ambiente_numero_pcs")
     private int numeroPcs;
 
-    @Column(name = "ambiente_capacidade", length = 11)
+    @Column(name = "ambiente_capacidade")
     private int capacidade;
 
-    @Column(name = "ambiente_status", length = 11)
+    @Column(name = "ambiente_status")
     private int status;
 
     @OneToOne(mappedBy = "ambiente")
@@ -106,6 +106,14 @@ public class Ambiente implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public DiasSemLocacao getDiasSemLocacao() {
+        return diasSemLocacao;
+    }
+
+    public void setDiasSemLocacao(DiasSemLocacao diasSemLocacao) {
+        this.diasSemLocacao = diasSemLocacao;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class UsuarioService {
                     usuarioEncontrado.setMatricula(usuario.getMatricula());
                     usuarioEncontrado.setTipo(usuario.getTipo());
                     usuarioEncontrado.setStatus(usuario.getStatus());
-                    usuarioEncontrado.setLodDataCriacao(usuario.getLodDataCriacao());
+                    usuarioEncontrado.setLogDaCriacao(usuario.getLogDaCriacao());
                     return usuarioRepository.save(usuarioEncontrado);
                 })
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + id));

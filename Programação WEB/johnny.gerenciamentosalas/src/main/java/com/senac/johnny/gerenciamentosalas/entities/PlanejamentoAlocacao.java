@@ -16,11 +16,33 @@ public class PlanejamentoAlocacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "planejamento_alocacao_id", length = 11)
+    @Column(name = "planejamento_alocacao_id")
     private int id;
+
+    @Column(name = "planejamento_alocacao_data")
     private LocalDate data;
+
+    @Column(name = "planejamento_alocacao_hora_inicio")
     private LocalTime horaInicio;
+
+    @Column(name = "planejamento_alocacao_hora_fim")
     private LocalTime horaFim;
+
+    @Column(name = "planejamento_alocacao_observacao")
     private String observacao;
+
+    @Column(name = "planejamento_alocacao_status")
     private int status;
+
+    @OneToOne
+    @JoinColumn(name = "ambiente_id", nullable = false)
+    private Ambiente ambiente;
+
+    @OneToOne
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "reserva_alocacao_id")
+    private ReservaAlocacao reservaAlocacao;
 }

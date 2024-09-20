@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,23 +21,23 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuario_id", length = 11)
+    @Column(name = "usuario_id")
     private int id;
 
-    @Column(name = "usuario_nome", length = 300)
+    @Column(name = "usuario_nome")
     private String nome;
 
-    @Column(name = "usuario_matricula", length = 45)
+    @Column(name = "usuario_matricula")
     private String matricula;
 
-    @Column(name = "usuario_tipo", length = 11 )
+    @Column(name = "usuario_tipo")
     private int tipo;
 
-    @Column(name = "usuario_status", length = 11)
+    @Column(name = "usuario_status", nullable = false)
     private int status;
 
-    @Column(name = "usuario_log_data_criacao")
-    private LocalDateTime lodDataCriacao;
+    @Column(name = "usuario_log_data_criacao", nullable = false)
+    private LocalDateTime logDaCriacao;
 
     @ManyToOne
     @JoinColumn(name = "usuario_lod_responsavel_id")
@@ -45,7 +46,7 @@ public class Usuario implements Serializable {
     @OneToMany(mappedBy = "usuario")
     @JsonManagedReference
     @JsonIgnore
-    private Set<Usuario> usuarios;
+    private List<Usuario> usuarios;
 
     @OneToOne(mappedBy = "usuario")
     private ReservaAlocacao reservaAlocacao;
@@ -59,7 +60,7 @@ public class Usuario implements Serializable {
         this.matricula = matricula;
         this.tipo = tipo;
         this.status = status;
-        this.lodDataCriacao = lodDataCriacao;
+        this.logDaCriacao = lodDataCriacao;
     }
 
     public int getId() {
@@ -102,12 +103,12 @@ public class Usuario implements Serializable {
         this.status = status;
     }
 
-    public LocalDateTime getLodDataCriacao() {
-        return lodDataCriacao;
+    public LocalDateTime getLogDaCriacao() {
+        return logDaCriacao;
     }
 
-    public void setLodDataCriacao(LocalDateTime lodDataCriacao) {
-        this.lodDataCriacao = lodDataCriacao;
+    public void setLogDaCriacao(LocalDateTime logDaCriacao) {
+        this.logDaCriacao = logDaCriacao;
     }
 
     @JsonBackReference
@@ -119,9 +120,18 @@ public class Usuario implements Serializable {
         this.usuario = usuario;
     }
 
-    public Set<Usuario> getUsuarios() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
+
+    public ReservaAlocacao getReservaAlocacao() {
+        return reservaAlocacao;
+    }
+
+    public void setReservaAlocacao(ReservaAlocacao reservaAlocacao) {
+        this.reservaAlocacao = reservaAlocacao;
+    }
+
 
     @Override
     public boolean equals(Object o) {

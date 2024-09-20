@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 @Entity
-@Table (name = "dias_sem_alocacao")
+@Table(name = "dias_sem_alocacao")
 public class DiasSemLocacao implements Serializable {
 
     @Serial
@@ -106,6 +106,7 @@ public class DiasSemLocacao implements Serializable {
     public void setAmbiente(Ambiente ambiente) {
         this.ambiente = ambiente;
     }
+
 
     @Override
     public boolean equals(Object o) {
