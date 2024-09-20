@@ -16,19 +16,22 @@ public class Municipio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "municipio_id", nullable = false)
-    private Integer id;
+    private int id;
 
-    @Column(name = "munucipio_nome", nullable = false)
+    @Column(name = "municipio_nome", nullable = false)
     private String nome;
 
-    @Column(name = "munucipio_status", nullable = false)
+    @Column(name = "municipio_status", nullable = false)
     private int status;
 
-    public Integer getId() {
+    public Municipio() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

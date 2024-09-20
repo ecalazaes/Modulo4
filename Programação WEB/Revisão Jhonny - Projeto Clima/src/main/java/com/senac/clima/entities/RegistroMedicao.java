@@ -17,7 +17,7 @@ public class RegistroMedicao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "registro_medicao_id", nullable = false)
-    private Integer id;
+    private int id;
 
     @Column(name = "registro_medicao_data", nullable = false)
     private LocalDateTime data;
@@ -25,11 +25,20 @@ public class RegistroMedicao implements Serializable {
     @Column(name = "registro_medicao_status", nullable = false)
     private int status;
 
-    public Integer getId() {
+    @ManyToOne
+    @JoinColumn(name = "municipio_id", nullable = false)
+    private Municipio municipio;
+
+    @ManyToOne
+    @JoinColumn(name = "medidor_id", nullable = false)
+    private Medidor medidor;
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -47,6 +56,22 @@ public class RegistroMedicao implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    public Medidor getMedidor() {
+        return medidor;
+    }
+
+    public void setMedidor(Medidor medidor) {
+        this.medidor = medidor;
     }
 
     @Override

@@ -16,19 +16,20 @@ public class Medidor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "medidor_id", nullable = false)
-    private Integer id;
+    private int id;
 
     @Column(name = "medidor_status", nullable = false, length = 45)
     private int status;
 
-    @Column(name = "munucipio_id", nullable = false)
-    private int municipioId;
+    @ManyToOne
+    @JoinColumn(name = "municipio_id", nullable = false)
+    private Municipio municipio;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,14 +39,6 @@ public class Medidor implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public int getMunicipioId() {
-        return municipioId;
-    }
-
-    public void setMunicipioId(int municipioId) {
-        this.municipioId = municipioId;
     }
 
     @Override
