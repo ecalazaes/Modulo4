@@ -1,0 +1,55 @@
+CREATE SCHEMA IF NOT EXISTS `bdclima` DEFAULT CHARACTER SET utf8 ;
+USE `bdclima` ;
+
+-- -----------------------------------------------------
+-- Table `bdclima`.`municipio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bdclima`.`municipio` (
+  `municipio_id` INT NOT NULL AUTO_INCREMENT,
+  `municipio_nome` VARCHAR(45) NOT NULL,
+  `municipio_status` INT NOT NULL,
+  PRIMARY KEY (`municipio_id`),
+  UNIQUE INDEX `municipio_nome_UNIQUE` (`municipio_nome` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bdclima`.`medidor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bdclima`.`medidor` (
+  `medidor_id` INT NOT NULL AUTO_INCREMENT,
+  `medidor_status` INT NOT NULL,
+  `municipio_id` INT NOT NULL,
+  PRIMARY KEY (`medidor_id`),
+  INDEX `fk_medidor_municipio_idx` (`municipio_id` ASC) VISIBLE,
+  CONSTRAINT `fk_medidor_municipio`
+    FOREIGN KEY (`municipio_id`)
+    REFERENCES `bdclima`.`municipio` (`municipio_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `bdclima`.`registro_medicao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `bdclima`.`registro_medicao` (
+  `registro_medicao_id` INT NOT NULL AUTO_INCREMENT,
+  `registro_medicao_data` DATETIME NOT NULL,
+  `registro_medicao_status` INT NOT NULL,
+  `municipio_id` INT NOT NULL,
+  `medidor_id` INT NOT NULL,
+  PRIMARY KEY (`registro_medicao_id`),
+  INDEX `fk_registro_medicao_municipio1_idx` (`municipio_id` ASC) VISIBLE,
+  INDEX `fk_registro_medicao_medidor1_idx` (`medidor_id` ASC) VISIBLE,
+  CONSTRAINT `fk_registro_medicao_municipio1`
+    FOREIGN KEY (`municipio_id`)
+    REFERENCES `bdclima`.`municipio` (`municipio_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_registro_medicao_medidor1`
+    FOREIGN KEY (`medidor_id`)
+    REFERENCES `bdclima`.`medidor` (`medidor_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
