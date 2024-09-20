@@ -29,16 +29,4 @@ public class DiasSemLocacaoService {
                 .orElseThrow(() -> new RuntimeException("Dias não encontrado."));
     }
 
-    public void deletarDias(int id) {
-        diasSemLocacaoRepository.deleteById(id);
-    }
-
-//    public DiasSemLocacao atualizarDias(int id, DiasSemLocacao diasSemLocacao) {
-//        return diasSemLocacaoRepository.findById(id)
-//                .map(diasEncontrado -> {
-//                    diasEncontrado.setNome(usuario.getNome());
-//                    return diasSemLocacaoRepository.save(diasEncontrado);
-//                })
-//                .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + id));
-//    }
 }

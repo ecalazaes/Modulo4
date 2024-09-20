@@ -36,8 +36,7 @@ public class ReservaAlocacao implements Serializable {
     private int status;
 
     @OneToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
-    @Column(length = 11)
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     public ReservaAlocacao() {
