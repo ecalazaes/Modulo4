@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public List<User> getUserByName(String nome) {
-      return userRepository.findByNomeContaining(nome);
+      return userRepository.findByNomeContainingIgnoreCase(nome);
     }
 
     public List<User> getUserByIdade(int idade) {
