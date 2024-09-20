@@ -74,6 +74,8 @@ public class RegistroMedicao implements Serializable {
         this.medidor = medidor;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

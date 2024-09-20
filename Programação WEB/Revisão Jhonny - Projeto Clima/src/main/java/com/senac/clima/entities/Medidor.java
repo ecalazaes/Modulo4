@@ -41,6 +41,14 @@ public class Medidor implements Serializable {
         this.status = status;
     }
 
+    public Municipio getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
