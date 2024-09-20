@@ -9,18 +9,18 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private UserRepostiory userRepository;
+    private final UserRepostiory userRepository;
 
     public UserService(UserRepostiory userRepository) {
         this.userRepository = userRepository;
     }
 
     public List<User> getUsers() {
-       return userRepository.findAll();
+        return userRepository.findAll();
     }
 
     public List<User> getUserByName(String nome) {
-      return userRepository.findByNomeContainingIgnoreCase(nome);
+        return userRepository.findByNomeContainingIgnoreCase(nome);
     }
 
     public List<User> getUserByIdade(int idade) {

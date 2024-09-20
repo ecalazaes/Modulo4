@@ -10,6 +10,5 @@ import java.util.List;
 public interface UserRepostiory extends JpaRepository<User, Long> {
 
     List<User> findByNomeContainingIgnoreCase(String nome);
-
     List<User> findByIdade(int idade);
 }

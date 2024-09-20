@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserControllers {
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserControllers(UserService userService) {
         this.userService = userService;

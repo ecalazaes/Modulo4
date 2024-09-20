@@ -11,6 +11,7 @@ import { DataService } from '../../services/data.service';
   styleUrl: './modal.component.css',
 })
 export class ModalComponent {
+  
   filtroNome: string = '';
   filtroIdade: number | null = null;
   filtroSelecionado: string = 'nome'; // Inicialize com "nome" por padrão
@@ -59,8 +60,6 @@ export class ModalComponent {
         },
         error: (error) => console.log('Erro na requisição (Idade): ', error),
       });
-    } else {
-      console.log('Filtro de idade é nulo ou indefinido');
-    }
+    } 
   }
 }
