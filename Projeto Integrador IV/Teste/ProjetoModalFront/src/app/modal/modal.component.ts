@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { DataService } from '../../services/data.service';
+
 
 @Component({
   selector: 'app-modal',
@@ -10,8 +10,9 @@ import { DataService } from '../../services/data.service';
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })
+
 export class ModalComponent {
-  
+
   filtroNome: string = '';
   filtroIdade: number | null = null;
   filtroSelecionado: string = 'nome'; // Inicialize com "nome" por padrão
@@ -60,6 +61,6 @@ export class ModalComponent {
         },
         error: (error) => console.log('Erro na requisição (Idade): ', error),
       });
-    } 
+    }
   }
 }

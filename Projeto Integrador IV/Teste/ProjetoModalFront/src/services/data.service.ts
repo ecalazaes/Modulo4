@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class DataService {
   private baseUrl = 'http://localhost:8080/usuarios'; // Substituir pela url do Endpoint
 
