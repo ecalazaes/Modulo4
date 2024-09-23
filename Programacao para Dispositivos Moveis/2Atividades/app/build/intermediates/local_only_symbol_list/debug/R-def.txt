@@ -1,0 +1,22 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color blue
+color gray
+color pink
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id btIr
+id btVoltar
+id message
+id msgSend
+layout activity_main
+layout activity_main2
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.DuasAtividades2
+style Theme.DuasAtividades2
+xml backup_rules
+xml data_extraction_rules
