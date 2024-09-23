@@ -1,16 +1,12 @@
 package com.senac.johnny.gerenciamentosalas.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "usuario")
@@ -21,7 +17,7 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usuario_id")
+    @Column(name = "usuario_id", nullable = false)
     private int id;
 
     @Column(name = "usuario_nome")
@@ -43,24 +39,16 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "usuario_lod_responsavel_id")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "usuario")
-    @JsonManagedReference
-    @JsonIgnore
-    private List<Usuario> usuarios;
-
-    @OneToOne(mappedBy = "usuario")
-    private ReservaAlocacao reservaAlocacao;
-
     public Usuario() {
     }
 
-    public Usuario(int id, String nome, String matricula, int tipo, int status, LocalDateTime lodDataCriacao, Usuario usuario, Set<Usuario> usuarios) {
+    public Usuario(int id, String nome, String matricula, int tipo, int status, LocalDateTime logDaCriacao) {
         this.id = id;
         this.nome = nome;
         this.matricula = matricula;
         this.tipo = tipo;
         this.status = status;
-        this.logDaCriacao = lodDataCriacao;
+        this.logDaCriacao = logDaCriacao;
     }
 
     public int getId() {
@@ -111,6 +99,7 @@ public class Usuario implements Serializable {
         this.logDaCriacao = logDaCriacao;
     }
 
+
     @JsonBackReference
     public Usuario getUsuario() {
         return usuario;
@@ -119,19 +108,6 @@ public class Usuario implements Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public ReservaAlocacao getReservaAlocacao() {
-        return reservaAlocacao;
-    }
-
-    public void setReservaAlocacao(ReservaAlocacao reservaAlocacao) {
-        this.reservaAlocacao = reservaAlocacao;
-    }
-
 
     @Override
     public boolean equals(Object o) {

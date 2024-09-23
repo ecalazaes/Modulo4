@@ -36,9 +36,6 @@ public class Ambiente implements Serializable {
     @Column(name = "ambiente_status")
     private int status;
 
-    @OneToOne(mappedBy = "ambiente")
-    private DiasSemLocacao diasSemLocacao;
-
     public Ambiente() {
     }
 
@@ -106,14 +103,6 @@ public class Ambiente implements Serializable {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public DiasSemLocacao getDiasSemLocacao() {
-        return diasSemLocacao;
-    }
-
-    public void setDiasSemLocacao(DiasSemLocacao diasSemLocacao) {
-        this.diasSemLocacao = diasSemLocacao;
     }
 
     @Override

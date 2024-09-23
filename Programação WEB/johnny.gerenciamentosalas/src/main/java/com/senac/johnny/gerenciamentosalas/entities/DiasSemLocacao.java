@@ -35,7 +35,7 @@ public class DiasSemLocacao implements Serializable {
     @Column(name = "dias_sem_alocacao_status")
     private int status;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "ambiente_id")
     private Ambiente ambiente;
 
