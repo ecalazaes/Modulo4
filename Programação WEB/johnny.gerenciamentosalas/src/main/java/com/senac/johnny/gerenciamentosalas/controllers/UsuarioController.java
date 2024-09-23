@@ -48,3 +48,4 @@ public class UsuarioController {
         return usuarioAtualizado == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(usuarioAtualizado);
     }
 }
+

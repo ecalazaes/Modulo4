@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class UsuarioService {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -32,16 +32,10 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
-    public Usuario atualizarUsuario(int id, Usuario usuario) {
-        return usuarioRepository.findById(id)
-                .map(usuarioEncontrado -> {
-                    usuarioEncontrado.setNome(usuario.getNome());
-                    usuarioEncontrado.setMatricula(usuario.getMatricula());
-                    usuarioEncontrado.setTipo(usuario.getTipo());
-                    usuarioEncontrado.setStatus(usuario.getStatus());
-                    usuarioEncontrado.setLogDaCriacao(usuario.getLogDaCriacao());
-                    return usuarioRepository.save(usuarioEncontrado);
-                })
-                .orElseThrow(() -> new RuntimeException("Produto não encontrado com o ID: " + id));
+    public Usuario atualizarUsuario(int id , Usuario usuario) {
+        Usuario usuarioExistente = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado com o ID: " + id));
+        usuario.setId(id);
+        return usuarioRepository.save(usuarioExistente);
     }
 }
