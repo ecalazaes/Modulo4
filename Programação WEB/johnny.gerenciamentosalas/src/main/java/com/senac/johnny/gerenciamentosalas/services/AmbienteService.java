@@ -34,16 +34,9 @@ public class AmbienteService {
     }
 
     public Ambiente atualizarAmbiente(int id, Ambiente ambiente) {
-        return ambienteRepository.findById(id)
-                .map(ambienteEncontrado -> {
-                    ambienteEncontrado.setDescricao(ambiente.getDescricao());
-                    ambienteEncontrado.setAndar(ambiente.getAndar());
-                    ambienteEncontrado.setTipo(ambiente.getTipo());
-                    ambienteEncontrado.setNumeroPcs(ambiente.getNumeroPcs());
-                    ambienteEncontrado.setCapacidade(ambiente.getCapacidade());
-                    ambienteEncontrado.setStatus(ambiente.getStatus());
-                    return ambienteRepository.save(ambienteEncontrado);
-                })
+        Ambiente ambienteExistente =  ambienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ambiente não encontrado com o ID: " + id));
+        ambiente.setId(id);
+        return ambienteRepository.save(ambienteExistente);
     }
 }

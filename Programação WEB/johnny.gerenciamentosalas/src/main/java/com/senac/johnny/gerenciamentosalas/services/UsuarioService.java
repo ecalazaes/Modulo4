@@ -25,7 +25,7 @@ public class UsuarioService {
 
     public Usuario listarPorId(int id) {
         return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado com o ID: " + id));
     }
 
     public void deletarUsuario(int id) {
