@@ -2,6 +2,7 @@ package com.senac.johnny.gerenciamentosalas.controllers;
 
 import com.senac.johnny.gerenciamentosalas.entities.Usuario;
 import com.senac.johnny.gerenciamentosalas.services.UsuarioService;
+import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class UsuarioController {
     }
 
     @PostMapping("criar")
+    @Transactional
     public ResponseEntity<Usuario> saveUsuario(@RequestBody Usuario usuario) {
         Usuario novoUsuario = usuarioService.saveUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
@@ -37,15 +39,17 @@ public class UsuarioController {
     }
 
     @DeleteMapping("deletarPorId/{id}")
+    @Transactional
     public ResponseEntity<Void> deletarUsuario(@PathVariable int id) {
         usuarioService.deletarUsuario(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("atualizarPorId/{id}")
+    @Transactional
     public ResponseEntity<Usuario> atualizarUsuario(@PathVariable int id, @RequestBody Usuario usuario) {
         Usuario usuarioAtualizado = usuarioService.atualizarUsuario(id, usuario);
-        return usuarioAtualizado == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(usuarioAtualizado);
+        return ResponseEntity.ok(usuarioAtualizado);
     }
 }
 
