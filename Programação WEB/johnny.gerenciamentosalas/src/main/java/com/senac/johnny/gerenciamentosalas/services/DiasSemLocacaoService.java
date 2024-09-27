@@ -1,7 +1,6 @@
 package com.senac.johnny.gerenciamentosalas.services;
 
 import com.senac.johnny.gerenciamentosalas.entities.DiasSemLocacao;
-import com.senac.johnny.gerenciamentosalas.entities.Usuario;
 import com.senac.johnny.gerenciamentosalas.repositories.DiasSemLocacaoRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,19 @@ public class DiasSemLocacaoService {
 
     public DiasSemLocacao listarPorId(int id) {
         return diasSemLocacaoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Dias não encontrado."));
+                .orElseThrow(() -> new RuntimeException("Dias não encontrado com ID: " + id));
+    }
+
+    public void deletarDias(int id){
+        diasSemLocacaoRepository.deleteById(id);
+    }
+
+    public DiasSemLocacao atulizarDiaPorId(int id, DiasSemLocacao diasSemLocacao){
+        DiasSemLocacao diaExistente =  diasSemLocacaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Dia não encontrado com o ID: " + id));
+
+        diasSemLocacao.setId(id);
+        return diasSemLocacaoRepository.save(diaExistente);
     }
 
 }

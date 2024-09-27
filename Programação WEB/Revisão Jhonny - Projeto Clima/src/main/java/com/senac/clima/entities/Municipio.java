@@ -27,6 +27,12 @@ public class Municipio implements Serializable {
     public Municipio() {
     }
 
+    public Municipio(int id, String nome, int status) {
+        this.id = id;
+        this.nome = nome;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }
