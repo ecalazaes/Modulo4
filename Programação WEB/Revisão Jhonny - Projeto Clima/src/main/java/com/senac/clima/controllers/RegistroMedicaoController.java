@@ -26,14 +26,12 @@ public class RegistroMedicaoController {
     }
 
     @PostMapping("adiconar")
-    @Transactional
     public ResponseEntity<RegistroMedicao> adicionarRegistroMedicao(RegistroMedicao registroMedicao) {
         RegistroMedicao registroNovo = registroMedicaoService.adicionarRegistroMedicao(registroMedicao);
         return ResponseEntity.status(HttpStatus.CREATED).body(registroNovo);
     }
 
     @DeleteMapping("deletar/{id}")
-    @Transactional
     public ResponseEntity<String> deletarRegistroLogico(@PathVariable int id) {
         try {
             registroMedicaoService.deletarRegistroLogico(id);
@@ -44,7 +42,6 @@ public class RegistroMedicaoController {
     }
 
     @PutMapping("atualizar/{id}")
-    @Transactional
     public ResponseEntity<RegistroMedicao> atualizarPorId(@PathVariable int id, @RequestBody RegistroMedicao registroMedicao) {
         registroMedicaoService.atualizarPorId(id, registroMedicao);
         return ResponseEntity.ok(registroMedicao);

@@ -26,14 +26,12 @@ public class MunicipioController {
     }
 
     @PostMapping("adicionar")
-    @Transactional
     public ResponseEntity<Municipio> adicionarMunicipio(@RequestBody Municipio municipio) {
         Municipio municipioNovo = municipioService.adicionarMunicipio(municipio);
         return ResponseEntity.status(HttpStatus.CREATED).body(municipioNovo);
     }
 
     @DeleteMapping("deletar/{id}")
-    @Transactional
     public ResponseEntity<String> deletarMunicipioLogico(@PathVariable int id) {
         try {
             municipioService.deletarMunicipioLogico(id);
@@ -44,7 +42,6 @@ public class MunicipioController {
     }
 
     @PutMapping("atualizar/{id}")
-    @Transactional
     public ResponseEntity<Municipio> atualizarMunicipio(@PathVariable int id, @RequestBody Municipio municipio) {
         municipioService.atualizarPorId(id, municipio);
         return ResponseEntity.ok(municipio);

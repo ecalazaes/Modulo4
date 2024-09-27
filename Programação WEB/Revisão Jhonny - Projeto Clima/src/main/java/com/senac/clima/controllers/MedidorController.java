@@ -26,14 +26,12 @@ public class MedidorController {
     }
 
     @PostMapping("adicionar")
-    @Transactional
     public ResponseEntity<Medidor> adicionarMedidor(@RequestBody Medidor medidor) {
         Medidor medidorNovo = medidorService.adicionarMedidor(medidor);
         return ResponseEntity.status(HttpStatus.CREATED).body(medidorNovo);
     }
 
     @DeleteMapping("deletar/{id}")
-    @Transactional
     public ResponseEntity<String> deletarMedidorLogico(@PathVariable int id) {
         try {
             medidorService.deletarMedidorLogico(id);
@@ -44,7 +42,6 @@ public class MedidorController {
     }
 
     @PutMapping("atualizar/{id}")
-    @Transactional
     public ResponseEntity<Medidor> atualizarMedidor(@PathVariable int id, @RequestBody Medidor medidor) {
         medidorService.atualizarPorId(id, medidor);
         return ResponseEntity.ok(medidor);

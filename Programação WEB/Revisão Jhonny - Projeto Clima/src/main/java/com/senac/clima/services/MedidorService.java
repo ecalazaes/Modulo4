@@ -3,6 +3,7 @@ package com.senac.clima.services;
 import com.senac.clima.entities.Medidor;
 import com.senac.clima.entities.Municipio;
 import com.senac.clima.repositories.MedidorRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +21,12 @@ public class MedidorService {
         return medidorRepository.findAll();
     }
 
+    @Transactional
     public Medidor adicionarMedidor(Medidor medidor){
         return medidorRepository.save(medidor);
     }
 
+    @Transactional
     public Medidor deletarMedidorLogico(int id){
         Medidor medidor = medidorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Medidor com id " + id + " não encontrado"));
@@ -32,6 +35,7 @@ public class MedidorService {
         return medidorRepository.save(medidor);
     }
 
+    @Transactional
     public Medidor atualizarPorId(int id, Medidor medidor) {
         if (!medidorRepository.existsById(id)) {
             throw new RuntimeException("Medidor com id " + id + " não encontrado");

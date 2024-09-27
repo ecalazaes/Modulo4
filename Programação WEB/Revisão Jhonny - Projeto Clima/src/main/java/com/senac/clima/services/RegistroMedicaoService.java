@@ -2,6 +2,7 @@ package com.senac.clima.services;
 
 import com.senac.clima.entities.RegistroMedicao;
 import com.senac.clima.repositories.RegistroMedicaoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +20,12 @@ public class RegistroMedicaoService {
         return registroMedicaoRepository.findAll();
     }
 
+    @Transactional
     public RegistroMedicao adicionarRegistroMedicao(RegistroMedicao registroMedicao) {
         return registroMedicaoRepository.save(registroMedicao);
     }
 
+    @Transactional
     public RegistroMedicao deletarRegistroLogico(int id) {
         RegistroMedicao registroMedicao = registroMedicaoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Registro com id " + id + " não encontrado"));
@@ -31,6 +34,7 @@ public class RegistroMedicaoService {
         return registroMedicaoRepository.save(registroMedicao);
     }
 
+    @Transactional
     public RegistroMedicao atualizarPorId(int id, RegistroMedicao registroMedicao) {
         if (!registroMedicaoRepository.existsById(id)) {
             throw new RuntimeException("Registro com id " + id + " não encontrado");

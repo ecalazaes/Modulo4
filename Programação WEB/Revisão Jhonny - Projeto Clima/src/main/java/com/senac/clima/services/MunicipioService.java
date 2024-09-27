@@ -2,6 +2,7 @@ package com.senac.clima.services;
 
 import com.senac.clima.entities.Municipio;
 import com.senac.clima.repositories.MunicipioRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,10 +20,12 @@ public class MunicipioService {
         return (municipioRepository.findAll());
     }
 
+    @Transactional
     public Municipio adicionarMunicipio(Municipio municipio) {
         return municipioRepository.save(municipio);
     }
 
+    @Transactional
     public Municipio deletarMunicipioLogico(int id) {
         Municipio municipio = municipioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Municipio com id " + id + " não encontrado"));
@@ -31,6 +34,7 @@ public class MunicipioService {
         return municipioRepository.save(municipio);
     }
 
+    @Transactional
     public Municipio atualizarPorId(int id, Municipio municipio) {
         if (!municipioRepository.existsById(id)) {
             throw new RuntimeException("Municipio com id " + id + " não encontrado");
