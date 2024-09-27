@@ -9,13 +9,33 @@ import java.util.List;
 @Service
 public class MunicipioService {
 
-    private MunicipioRepository municipioRepository;
+    private final MunicipioRepository municipioRepository;
 
     public MunicipioService(MunicipioRepository municipioRepository) {
         this.municipioRepository = municipioRepository;
     }
 
-    public List<Municipio> listarMunicipios(){
+    public List<Municipio> listarMunicipios() {
         return (municipioRepository.findAll());
+    }
+
+    public Municipio adicionarMunicipio(Municipio municipio) {
+        return municipioRepository.save(municipio);
+    }
+
+    public Municipio deletarMunicipioLogico(int id) {
+        Municipio municipio = municipioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Municipio com id " + id + " não encontrado"));
+
+        municipio.setStatus(-1);
+        return municipioRepository.save(municipio);
+    }
+
+    public Municipio atualizarPorId(int id, Municipio municipio) {
+        if (!municipioRepository.existsById(id)) {
+            throw new RuntimeException("Municipio com id " + id + " não encontrado");
+        }
+        municipio.setId(id);
+        return municipioRepository.save(municipio);
     }
 }

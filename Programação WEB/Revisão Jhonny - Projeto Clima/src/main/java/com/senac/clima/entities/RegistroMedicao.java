@@ -33,6 +33,16 @@ public class RegistroMedicao implements Serializable {
     @JoinColumn(name = "medidor_id", nullable = false)
     private Medidor medidor;
 
+    public RegistroMedicao() {
+    }
+
+    public RegistroMedicao(int id, LocalDateTime data, int status, Municipio municipio, Medidor medidor) {
+        this.id = id;
+        this.data = data;
+        this.status = status;
+        this.municipio = municipio;
+        this.medidor = medidor;
+    }
 
     public int getId() {
         return id;

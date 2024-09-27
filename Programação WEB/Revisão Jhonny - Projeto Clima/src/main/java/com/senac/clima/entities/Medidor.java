@@ -25,6 +25,15 @@ public class Medidor implements Serializable {
     @JoinColumn(name = "municipio_id", nullable = false)
     private Municipio municipio;
 
+    public Medidor() {
+    }
+
+    public Medidor(int id, int status, Municipio municipio) {
+        this.id = id;
+        this.status = status;
+        this.municipio = municipio;
+    }
+
     public int getId() {
         return id;
     }

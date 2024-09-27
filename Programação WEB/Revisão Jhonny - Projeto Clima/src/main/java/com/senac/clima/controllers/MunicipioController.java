@@ -2,15 +2,15 @@ package com.senac.clima.controllers;
 
 import com.senac.clima.entities.Municipio;
 import com.senac.clima.services.MunicipioService;
+import jakarta.transaction.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/municipios")
+@RequestMapping("municipios")
 public class MunicipioController {
 
     private MunicipioService municipioService;
@@ -19,9 +19,34 @@ public class MunicipioController {
         this.municipioService = municipioService;
     }
 
-    @GetMapping
+    @GetMapping("listar")
     public ResponseEntity<List<Municipio>> listarMunicipios() {
         List<Municipio> municipios = municipioService.listarMunicipios();
         return ResponseEntity.ok(municipios);
+    }
+
+    @PostMapping("adicionar")
+    @Transactional
+    public ResponseEntity<Municipio> adicionarMunicipio(@RequestBody Municipio municipio) {
+        Municipio municipioNovo = municipioService.adicionarMunicipio(municipio);
+        return ResponseEntity.status(HttpStatus.CREATED).body(municipioNovo);
+    }
+
+    @DeleteMapping("deletar/{id}")
+    @Transactional
+    public ResponseEntity<String> deletarMunicipioLogico(@PathVariable int id) {
+        try {
+            municipioService.deletarMunicipioLogico(id);
+            return ResponseEntity.ok("Município deletado com sucesso.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("atualizar/{id}")
+    @Transactional
+    public ResponseEntity<Municipio> atualizarMunicipio(@PathVariable int id, @RequestBody Municipio municipio) {
+        municipioService.atualizarPorId(id, municipio);
+        return ResponseEntity.ok(municipio);
     }
 }
