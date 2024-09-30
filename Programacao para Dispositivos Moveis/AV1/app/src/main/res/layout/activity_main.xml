@@ -1,0 +1,92 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#FF4CAF50">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jogo de Dados"
+        android:textSize="24sp"
+        android:textColor="#800080"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/tvVencedor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VENCEDOR:"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvJogador1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jogador1"
+            android:textColor="#000000"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/tvJogador2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jogador2"
+            android:textColor="#000000"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imgDadoJogador1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/dice1"
+            android:layout_margin="10dp"/>
+
+        <ImageView
+            android:id="@+id/imgDadoJogador2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/dice1"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnJogarDados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jogar os Dados"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#800080"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btnVerPlacar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver Placar"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#800080"
+        android:layout_marginTop="20dp"/>
+
+
+</LinearLayout>
