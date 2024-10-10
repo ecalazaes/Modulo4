@@ -24,9 +24,10 @@ public class AcompanhamentoPedido implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "acompanhamentoPedidoId", nullable = false)
     private Long id;
 
-    @Column(name = "pedido_id", nullable = false)
+    @Column(name = "pedidoId", nullable = false)
     private Long pedidoId;
 
     @Column(name = "status", nullable = false)
