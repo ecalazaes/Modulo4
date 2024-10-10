@@ -1,14 +1,22 @@
 package com.projeto04.Av1.entities;
 
+import com.projeto04.Av1.entities.enums.StatusPedido;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Entity
 @Table(name = "acompanhamento")
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
 public class AcompanhamentoPedido implements Serializable {
 
     @Serial
@@ -18,67 +26,19 @@ public class AcompanhamentoPedido implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "pedido_id")
+    @Column(name = "pedido_id", nullable = false)
     private Long pedidoId;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
-    @Column(name = "dataAtualizacao")
+    @Column(name = "dataAtualizacao", nullable = false)
     private LocalDateTime dataAtualizacao;
-
-    public AcompanhamentoPedido() {
-    }
 
     public AcompanhamentoPedido(Long pedidoId, StatusPedido status) {
         this.pedidoId = pedidoId;
         this.status = status;
         this.dataAtualizacao = LocalDateTime.now();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getPedidoId() {
-        return pedidoId;
-    }
-
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
-    }
-
-    public StatusPedido getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusPedido status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getDataAtualizacao() {
-        return dataAtualizacao;
-    }
-
-    public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
-        this.dataAtualizacao = dataAtualizacao;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AcompanhamentoPedido that = (AcompanhamentoPedido) o;
-        return Objects.equals(id, that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 }
