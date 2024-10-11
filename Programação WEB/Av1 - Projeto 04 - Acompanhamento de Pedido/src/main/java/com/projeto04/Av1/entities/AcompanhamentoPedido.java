@@ -2,10 +2,7 @@ package com.projeto04.Av1.entities;
 
 import com.projeto04.Av1.entities.enums.StatusPedido;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class AcompanhamentoPedido implements Serializable {
 
     @Serial
