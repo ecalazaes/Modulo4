@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface AcompanhamentoPedidoRepository extends JpaRepository<AcompanhamentoPedido, Long> {
 
+
+
     List<AcompanhamentoPedido> findByPedidoIdOrderByDataAtualizacaoDesc(long pedidoId);
 
     List<AcompanhamentoPedido> findByOrderByPedidoIdAscDataAtualizacaoDesc();

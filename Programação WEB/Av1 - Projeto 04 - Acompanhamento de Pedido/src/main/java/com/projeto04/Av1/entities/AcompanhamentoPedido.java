@@ -25,10 +25,13 @@ public class AcompanhamentoPedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "acompanhamentoPedidoId", nullable = false)
-    private Long id;
+    private Long acompanhamentoId;
 
     @Column(name = "pedidoId", nullable = false)
     private Long pedidoId;
+
+    @Column(name = "usuarioId", nullable = false)
+    private Long usuarioId;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -37,7 +40,8 @@ public class AcompanhamentoPedido implements Serializable {
     @Column(name = "dataAtualizacao", nullable = false)
     private LocalDateTime dataAtualizacao;
 
-    public AcompanhamentoPedido(Long pedidoId, StatusPedido status) {
+    public AcompanhamentoPedido(Long usuarioId, Long pedidoId, StatusPedido status) {
+        this.usuarioId = usuarioId;
         this.pedidoId = pedidoId;
         this.status = status;
         this.dataAtualizacao = LocalDateTime.now();

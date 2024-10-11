@@ -18,9 +18,10 @@ public class Instancias implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        AcompanhamentoPedido pedido1 = new AcompanhamentoPedido(1L, StatusPedido.POSTAGEM);
-        AcompanhamentoPedido pedido2 = new AcompanhamentoPedido(2L, StatusPedido.PREPARACAO);
-        AcompanhamentoPedido pedido3 = new AcompanhamentoPedido(3L, StatusPedido.COLETA);
-        acompanhamentoPedidoRepository.saveAll(Arrays.asList(pedido1, pedido2, pedido3));
+//        acompanhamentoPedidoRepository.deleteAll();
+//        AcompanhamentoPedido pedido1 = new AcompanhamentoPedido(1L, StatusPedido.POSTAGEM);
+//        AcompanhamentoPedido pedido2 = new AcompanhamentoPedido(2L, StatusPedido.PREPARACAO);
+//        AcompanhamentoPedido pedido3 = new AcompanhamentoPedido(3L, StatusPedido.COLETA);
+//        acompanhamentoPedidoRepository.saveAll(Arrays.asList(pedido1, pedido2, pedido3));
     }
 }
