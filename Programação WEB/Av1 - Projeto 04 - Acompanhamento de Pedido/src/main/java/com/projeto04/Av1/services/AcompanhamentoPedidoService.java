@@ -1,5 +1,6 @@
 package com.projeto04.Av1.services;
 
+import com.projeto04.Av1.dto.AcompanhamentoPedidoDTO;
 import com.projeto04.Av1.entities.AcompanhamentoPedido;
 import com.projeto04.Av1.entities.enums.StatusPedido;
 import com.projeto04.Av1.repositories.AcompanhamentoPedidoRepository;
@@ -19,17 +20,35 @@ public class AcompanhamentoPedidoService {
 
     @Transactional
     public AcompanhamentoPedido registrarAtualizacao(Long usuarioId, Long pedidoId, StatusPedido novoStatus) {
-        AcompanhamentoPedido acompanhamento = new AcompanhamentoPedido(usuarioId, pedidoId, novoStatus);
-        return acompanhamentoPedidoRepository.save(acompanhamento);
+        boolean usuarioTemPedidoId = acompanhamentoPedidoRepository.existsByUsuarioIdAndPedidoId(usuarioId, pedidoId);
+        boolean pedidoIdNaoExiste = !acompanhamentoPedidoRepository.existsByPedidoId(pedidoId);
+
+
+        if (usuarioTemPedidoId || pedidoIdNaoExiste) {
+            AcompanhamentoPedido acompanhamento = new AcompanhamentoPedido(usuarioId, pedidoId, novoStatus);
+            return acompanhamentoPedidoRepository.save(acompanhamento);
+        }
+        throw new IllegalArgumentException("O usuário não possui autorização para atualizar este pedido.");
     }
 
-    public Map<Long, Map<Long, List<AcompanhamentoPedido>>> obterPedidosPorUsuarioId(Long usuarioId) {
+    public Map<Long, Map<Long, List<AcompanhamentoPedidoDTO>>> obterPedidosPorUsuarioId(Long usuarioId) {
         List<AcompanhamentoPedido> pedidos = acompanhamentoPedidoRepository.findByUsuarioIdOrderByDataAtualizacaoDesc(usuarioId);
 
         return pedidos.stream()
-                .collect(Collectors.groupingBy(AcompanhamentoPedido::getUsuarioId,
-                        Collectors.groupingBy(AcompanhamentoPedido::getPedidoId)));
+                .collect(Collectors.groupingBy(
+                        AcompanhamentoPedido::getUsuarioId,
+                        Collectors.groupingBy(
+                                AcompanhamentoPedido::getPedidoId,
+                                Collectors.mapping(this::toDTO, Collectors.toList())
+                        )
+                ));
     }
 
-
+    // Método auxiliar para converter AcompanhamentoPedido em AcompanhamentoPedidoDTO
+    private AcompanhamentoPedidoDTO toDTO(AcompanhamentoPedido acompanhamentoPedido) {
+        return new AcompanhamentoPedidoDTO(
+                acompanhamentoPedido.getStatus(),
+                acompanhamentoPedido.getDataAtualizacao()
+        );
+    }
 }

@@ -1,5 +1,6 @@
 package com.projeto04.Av1.controllers;
 
+import com.projeto04.Av1.dto.AcompanhamentoPedidoDTO;
 import com.projeto04.Av1.entities.AcompanhamentoPedido;
 import com.projeto04.Av1.entities.enums.StatusPedido;
 import com.projeto04.Av1.services.AcompanhamentoPedidoService;
@@ -19,8 +20,8 @@ public class AcompanhamentoPedidoController {
     private final AcompanhamentoPedidoService acompanhamentoService;
 
     @GetMapping("/{usuarioId}/pedidos")
-    public ResponseEntity<Map<Long, Map<Long, List<AcompanhamentoPedido>>>> obterPedidosPorUsuarioId(@PathVariable Long usuarioId) {
-        Map<Long, Map<Long, List<AcompanhamentoPedido>>> pedidos = acompanhamentoService.obterPedidosPorUsuarioId(usuarioId);
+    public ResponseEntity<Map<Long, Map<Long, List<AcompanhamentoPedidoDTO>>>> obterPedidosPorUsuarioId(@PathVariable Long usuarioId) {
+        Map<Long, Map<Long, List<AcompanhamentoPedidoDTO>>> pedidos = acompanhamentoService.obterPedidosPorUsuarioId(usuarioId);
         return ResponseEntity.ok(pedidos);
     }
 

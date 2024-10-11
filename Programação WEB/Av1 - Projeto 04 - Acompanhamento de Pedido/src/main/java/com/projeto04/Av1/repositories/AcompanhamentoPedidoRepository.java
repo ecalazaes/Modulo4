@@ -10,6 +10,7 @@ import java.util.List;
 public interface AcompanhamentoPedidoRepository extends JpaRepository<AcompanhamentoPedido, Long> {
 
     List<AcompanhamentoPedido> findByUsuarioIdOrderByDataAtualizacaoDesc(Long usuarioId);
-
+    boolean existsByUsuarioIdAndPedidoId(Long usuarioId, Long pedidoId);
+    boolean existsByPedidoId(Long pedidoId);
 
 }
