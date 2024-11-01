@@ -8,7 +8,7 @@ public class TesteFilme1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int op = 0;
+        int op;
         List<Filme> filmes = new ArrayList<>();
         boolean filmeEncontrado;
 
@@ -110,7 +110,7 @@ public class TesteFilme1 {
                     break;
 
                 default:
-                    System.out.println("Número incorreto, tente novamente!");
+                    System.out.println("Opcção incorreta, tente novamente...!");
                     System.out.println();
             }
         } while (op != 5);
